@@ -1,0 +1,60 @@
+Render Sorts from high priority to low
+
+1) Alpha blending sort
+	a. non-alpha blended first
+	b. alpha blended last
+2) Z-Depth sort for alpha blending
+	a. back to front order
+	b. for alpha blended only, skip for non-alpha blended pass
+3) Effect sort "Render Context"
+	a. sort by common effect (.fx file with hlsl shaders)
+	b. effect can specify a painters sort order through annotations to reduce overdraw
+		1. "RenderSortOrder" = 0 indicates first-in first-out order
+		2. positive values indicate sort from beginning where 1 is first
+		3. negative values indicate sort from end where -1 is last
+		4. common non-zero sort orders handled in "relative FIFO" order
+4) Material sort "Texture Context"
+	a. sort by common materials/textures to minimize state changes
+5) Geometry Batch sort
+	a. supports geometry instancing
+	b. if not batched, individual components of a mesh with common effects/materials
+6) Z-Depth sort for non-alpha blending
+	a. front to back order to minimize overdraw
+	b. for non-alpha blending only, skip for alpha blended pass
+
+-------------------------------------------------------
+Material / Effect System Orginization
+
+Material {
+	* reference to a single Effect
+	* reference to several textures
+		16 total texture slots where certain slots are reserved for specific
+		pre-determined usages specified by annotations/semantics in Effect including:
+			normal map, displacement map, specular map,
+			reflectivity map, refraction map, and diffuse maps
+	* diffuse color
+}
+
+Effect {
+	* reference to pixel/vertex/etc. shaders
+	* techniques and passes, set up render state
+	* annotations indicate Render Context sort order,
+		required resources (e.g. textures)
+}
+
+GeometryChunk (or whatever) {
+	* reference to a single material
+	* vertex format derived from material/effect
+}
+
+Summary:
+	GeometryChunks are assigned Materials which provide a complete rendering context:
+	the material stores the Effect used for rendering, and must satisfy the
+	requirements of that effect by specifying resources for each texture slot needed.
+	Materials should be unique by resources that may vary across different objects,
+	that may still share the same effect for rendering.
+	Effects tell the pipeline how to render using the filled slots of a material as
+	input. The effect can also specify resources that are unique to the effect, but
+	may be common across all materials that could be used as input (for example a sky
+	rendering effect would probably specify different color ramp textures in the
+	material, but specify a common texture for precomputed values in the effect itself).

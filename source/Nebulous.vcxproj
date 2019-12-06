@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FD9644A5-4FB9-4663-933F-E1DC7B312E02}</ProjectGuid>
+    <RootNamespace>Nebulous</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programming\Libraries\boost_1_47_0;E:\Programming\Libraries\LuaPlus\luaplus51-all\Src;E:\Programming\Libraries\zlib-1.2.3;E:\Programming\SDK\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programming\Libraries\boost_1_47_0\lib;E:\Programming\Libraries\LuaPlus\lib;E:\Programming\SDK\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programming\Libraries\boost_1_47_0;E:\Programming\Libraries\LuaPlus\luaplus51-all\Src;E:\Programming\Libraries\zlib-1.2.3;E:\Programming\SDK\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programming\Libraries\boost_1_47_0\lib;E:\Programming\Libraries\LuaPlus\lib;E:\Programming\SDK\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;D3D_DEBUG_INFO;WIN32_LEAN_AND_MEAN;TIXML_USE_STL;NOMINMAX;DEBUG_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d9.lib;d3dx9d.lib;dxerr.lib;d3dxof.lib;luaplusstatic51_1201.debug.lib;../lib/zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;_HAS_ITERATOR_DEBUGGING=0;_SECURE_SCL=0;TIXML_USE_STL;NOMINMAX;DEBUG_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxerr.lib;d3dxof.lib;LuaPlusLib_1100.lib;../lib/zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Math\FastMath.h" />
+    <ClInclude Include="Math\NoiseWrapper.h" />
+    <ClInclude Include="Math\Plane3.h" />
+    <ClInclude Include="Math\TMatrix4x4.h" />
+    <ClInclude Include="Math\TQuaternion.h" />
+    <ClInclude Include="Math\TVector2.h" />
+    <ClInclude Include="Math\TVector3.h" />
+    <ClInclude Include="Math\TVector4.h" />
+    <ClInclude Include="Network\TCPServer.h" />
+    <ClInclude Include="Utility\BitField.h" />
+    <ClInclude Include="Utility\ConcurrentQueue.h" />
+    <ClInclude Include="Utility\CVar.h" />
+    <ClInclude Include="Utility\Factory.h" />
+    <ClInclude Include="Utility\Singleton.h" />
+    <ClInclude Include="Utility\Typedefs.h" />
+    <ClInclude Include="Utility\tinyxml253\tinystr.h" />
+    <ClInclude Include="Utility\tinyxml253\tinyxml.h" />
+    <ClInclude Include="ClipmapPyramid.h" />
+    <ClInclude Include="ClipmapRegion.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="EngineEvents.h" />
+    <ClInclude Include="hidusage.h" />
+    <ClInclude Include="HighPerfTimer.h" />
+    <ClInclude Include="ISphereNode.h" />
+    <ClInclude Include="ISphereTree.h" />
+    <ClInclude Include="Planet.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="SphericalTerrain.h" />
+    <ClInclude Include="Win32.h" />
+    <ClInclude Include="Render\Camera_D3D9.h" />
+    <ClInclude Include="Render\D3D9Debug.h" />
+    <ClInclude Include="Render\Effect_D3D9.h" />
+    <ClInclude Include="Render\Material_D3D9.h" />
+    <ClInclude Include="Render\RenderManager_D3D9.h" />
+    <ClInclude Include="Render\RenderObject_D3D9.h" />
+    <ClInclude Include="Render\RenderOptions.h" />
+    <ClInclude Include="Render\Resource_D3D9.h" />
+    <ClInclude Include="Render\Texture_D3D9.h" />
+    <ClInclude Include="Render\Font_TTF.h" />
+    <ClInclude Include="Render\ImageProcessing.h" />
+    <ClInclude Include="Render\RenderEvents.h" />
+    <ClInclude Include="Render\Scene.h" />
+    <ClInclude Include="Event\Event.h" />
+    <ClInclude Include="Event\EventHandler.h" />
+    <ClInclude Include="Event\EventListener.h" />
+    <ClInclude Include="Event\EventManager.h" />
+    <ClInclude Include="Event\RegisteredEvents.h" />
+    <ClInclude Include="Resource\ResCache.h" />
+    <ClInclude Include="Resource\ResHandle.h" />
+    <ClInclude Include="Resource\ResourceProcess.h" />
+    <ClInclude Include="Resource\Win32MemoryMappedFile.h" />
+    <ClInclude Include="Resource\ZipFile.h" />
+    <ClInclude Include="Physics\Airfoil.h" />
+    <ClInclude Include="Physics\Airframe.h" />
+    <ClInclude Include="Physics\FlightModel.h" />
+    <ClInclude Include="Physics\Integrator.h" />
+    <ClInclude Include="Physics\Physics.h" />
+    <ClInclude Include="Physics\PhysicsEvents.h" />
+    <ClInclude Include="Physics\RigidBody.h" />
+    <ClInclude Include="Scripting\ScriptFile_Lua.h" />
+    <ClInclude Include="Scripting\ScriptingEvents.h" />
+    <ClInclude Include="Scripting\ScriptManager_Lua.h" />
+    <ClInclude Include="Process\ProcessManager.h" />
+    <ClInclude Include="Process\ThreadProcess.h" />
+    <ClInclude Include="UI\UIElements.h" />
+    <ClInclude Include="UI\UISkin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Math\FastMath.cpp" />
+    <ClCompile Include="Math\NoiseWrapper.cpp" />
+    <ClCompile Include="Math\Plane3.cpp" />
+    <ClCompile Include="Utility\CVar.cpp" />
+    <ClCompile Include="Utility\Factory.cpp" />
+    <ClCompile Include="Utility\tinyxml253\tinystr.cpp" />
+    <ClCompile Include="Utility\tinyxml253\tinyxml.cpp" />
+    <ClCompile Include="Utility\tinyxml253\tinyxmlerror.cpp" />
+    <ClCompile Include="Utility\tinyxml253\tinyxmlparser.cpp" />
+    <ClCompile Include="ClipmapPyramid.cpp" />
+    <ClCompile Include="ClipmapRegion.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="EngineEvents.cpp" />
+    <ClCompile Include="HighPerfTimer.cpp" />
+    <ClCompile Include="ISphereNode.cpp" />
+    <ClCompile Include="ISphereTree.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="SphericalTerrain.cpp" />
+    <ClCompile Include="Win32.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Render\Camera_D3D9.cpp" />
+    <ClCompile Include="Render\Effect_D3D9.cpp" />
+    <ClCompile Include="Render\Material_D3D9.cpp" />
+    <ClCompile Include="Render\RenderManager_D3D9.cpp" />
+    <ClCompile Include="Render\RenderObject_D3D9.cpp" />
+    <ClCompile Include="Render\Texture_D3D9.cpp" />
+    <ClCompile Include="Render\Font_TTF.cpp" />
+    <ClCompile Include="Render\ImageProcessing.cpp" />
+    <ClCompile Include="Render\Scene.cpp" />
+    <ClCompile Include="Event\Event.cpp" />
+    <ClCompile Include="Event\EventListener.cpp" />
+    <ClCompile Include="Event\EventManager.cpp" />
+    <ClCompile Include="Resource\ResCache.cpp" />
+    <ClCompile Include="Resource\ResHandle.cpp" />
+    <ClCompile Include="Resource\ResourceProcess.cpp" />
+    <ClCompile Include="Resource\Win32MemoryMappedFile.cpp" />
+    <ClCompile Include="Resource\ZipFile.cpp" />
+    <ClCompile Include="Physics\FlightModel.cpp" />
+    <ClCompile Include="Physics\Integrator.cpp" />
+    <ClCompile Include="Physics\Physics.cpp" />
+    <ClCompile Include="Physics\PhysicsEvents.cpp" />
+    <ClCompile Include="Physics\RigidBody.cpp" />
+    <ClCompile Include="Scripting\ScriptFile_Lua.cpp" />
+    <ClCompile Include="Scripting\ScriptManager_Lua.cpp" />
+    <ClCompile Include="Process\ProcessManager.cpp" />
+    <ClCompile Include="Process\ThreadProcess.cpp" />
+    <ClCompile Include="UI\UIElements.cpp" />
+    <ClCompile Include="UI\UISkin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\effect\phong.fx" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

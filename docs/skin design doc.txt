@@ -1,0 +1,294 @@
+All ui elements are one of two general types; Fixed or Variable proportion.
+
+Fixed proportion means the width to height ratio of the element cannot change.
+It can be skinned with the following properties:
+
+	top_left (tl), bottom_right (br)
+
+Variable proportion means the w/h ratio of the element can vary. This type has
+two sub-types:
+
+	1) elements that can stretch/shrink in only one direction, either width or
+	height, divided	into three sections, are described with these properties:
+
+		left or top (fixed):		|-------|-------|-------|		|-------|
+			left_tl, left_br		|l      |m      |r      |	OR	|t      |
+		mid (stretch):				|       |<----->|       |		|-------|
+			mid_tl, mid_br			|       |       |       |		|m  ^   |
+		right or bottom (fixed):	|-------|-------|-------|		|   |   |
+			right_tl, right_br										|   v   |
+																	|-------|
+																	|b      |
+																	|-------|
+
+	2) elements that can stretch/shrink in both width and height, divided into
+	9 sections, are described with these properties:
+
+		top_left (fixed):					|-------|-------|-------|
+			top_left_tl, top_left_br		|tl     |tm     |tr     |
+		top mid (stretch):					|       |<----->|       |
+			top_mid_tl, top_mid_br			|       |       |       |
+		top_right (fixed):					|-------|-------|-------|
+			top_right_tl, top_right_br		|ml ^   |m  ^   |mr ^   |
+		left mid (stretch):					|   |   |<--|-->|   |   |
+			left_mid_tl, left_mid_br		|   v   |   v   |   v   |
+		mid (stretch):						|-------|-------|-------|
+			mid_tr, mid_br					|       |       |       |
+		bottom_left (fixed):				|       |<----->|       |
+			bottom_left_tl, bottom_left_br	|bl     |bm     |br     |
+		bottom_mid (stretch):				|-------|-------|-------|
+			bottom_mid_tl, bottom_mid_br
+		bottom_right (fixed):
+			bottom_right_tl, bottom_right_br
+
+-------------------------------------------------------------------------------
+Skins Elements:
+	SkinElement:
+		state
+			width, height (in screen pixels)
+	
+	Button
+		Usage: skin for default buttons
+		Type: variable 1-way stretch
+		For each of:
+			enabled, focus, disabled
+			
+	Checkbox, Radio
+		Usage: skin for checkboxes and radio buttons
+		Type: fixed
+		For each of:
+			enabled unchecked, enabled checked, enabled unchecked focus,
+			enabled checked focus, disabled unchecked, disabled checked
+			
+	Textbox
+		Usage: skin for text boxes and text areas
+		Type: variable 2-way stretch
+		For each of:
+			enabled, focus, disabled
+			
+	ComboButton
+		Usage: skin for the button piece of combo-boxes and list-boxes
+		Type: fixed
+		For each of:
+			enabled, focus, disabled
+			
+	Titlebar
+		Usage: skin for window title bar
+		Type: variable 1-way stretch
+		For each of:
+			active, inactive
+			
+	Border
+		Usage: skin for window/fieldset borders (top, bottom, left, right, and
+				4 corners)
+		Type: sides: variable 1-way stretch
+			  corners: fixed
+		For each of:
+			active, inactive
+			For each of:
+				sides: left, right, top, bottom
+				corners: tl, tr, bl, br
+		Opaque border width (int)
+		Transparent border width (int)
+		
+	UpArrowButton
+		Usage: skin for up arrow button on the end of vertical scroll bar
+		Type: fixed
+		For each of:
+			enabled, enabled focus, disabled
+			
+	DownArrowButton
+		Usage: skin for down arrow button on the end of vertical scroll bar
+		Type: fixed
+		For each of:
+			enabled, enabled focus, disabled
+
+	LeftArrowButton
+		Usage: skin for left arrow button on the end of horizontal scroll bar
+		Type: fixed
+		For each of:
+			enabled, enabled focus, disabled
+
+	RightArrowButton
+		Usage: skin for right arrow button on the end of horizontal scroll bar
+		Type: fixed
+		For each of:
+			enabled, enabled focus, disabled
+			
+	VerticalSlider
+		Usage: skin for slider on vertical scrollbar and slider controls
+		Type: variable 1-way stretch
+		For each of:
+			enabled, enabled focus, disabled
+	
+	HorizontalSlider
+		Usage: skin for slider on horizontal scrollbar and slider controls
+		Type: variable 1-way stretch
+		For each of:
+			enabled, enabled focus, disabled
+			
+	SliderTrack
+		Usage: skin for the track of a slider element
+		Type: variable 1-way stretch
+		For each of:
+			enabled, enabled focus, disabled
+			
+	ScrollTrack
+		Usage: skin for the track of a scrollbar element
+		Type: variable 1-way stretch
+		For each of:
+			enabled, enabled focus, disabled
+
+-------------------------------------------------------------------------------
+UI Classes:
+
+Element (base of all element types, forms the DOM hierarchy tree)
+	state
+		id					(string)			Unique ID string (hash table lookup)
+		parent				(Element)			Parent element (smart pointer to)
+		elements			(vector of Element)	List of child elements (smart pointers to)
+		width, height		(uint)				Visible width/height in px or pct on screen
+		hasfocus			(bool)				Only one Element may have input focus at a time
+		visible				(bool)				Visible on screen or not
+	events
+		onfocus, onblur
+	commands
+		show, hide, activate, blur
+		
+Window : Element
+	skin
+		Titlebar
+		VerticalBorder - left/right 
+		HorizontalBorder - bottom
+	state
+		modal				(bool)
+		title				(string)
+		resizable			(bool)
+		hasborder			(bool)
+		opacity				(float)
+		clientArea			(Panel)
+		padding				(int[4])
+	events
+		onopen, onclose
+	commands
+		resize
+
+Label : Element
+	skin
+	state
+		text				(string)
+		font				(Font)
+		color				(Color)
+		fontEffect			(enum {glow,shadow})
+		fontEffectColor		(Color)
+		fontEffectOpacity	(float)		Adjusts the opacity of the glow/shadow effect
+		fontBorder			(bool)
+		fontBorderColor		(Color)
+		fontBorderWidth		(float)		Adjusts the width of the character border
+	events
+	commands
+		
+Panel : Element
+	skin
+		ScrollTrack, VerticalSlider, HorizontalSlider, UpArrowButton,
+		DownArrowButton, LeftArrowButton, RightArrowButton
+	state
+		backgroundColor		(Color)
+		backgroundImage		(Texture)
+		backgroundPosition	(enum {center,stretch,tile})
+		opacity				(float)
+		padding				(int[4])
+		scroll				(enum {none,vertical,horizontal,both})
+		innerWidth			(uint)
+		innerHeight			(uint)
+	events
+	commands
+		resize
+
+Button : Element
+	skin
+		Button
+	state
+		label				(Label)		Text label on button
+		pushed				(bool)		If the button is down visually (doesn't imply click event fired)
+	events
+		onclick
+		
+Form : Element
+	skin
+	state
+		fields				(list of FormElement)
+	events
+	commands
+		submit
+		
+FormElement : Element (base of all form element types)
+	skin
+	state
+		name				(string)	Form field identifier
+		disabled			(bool)		Field enabled for input/output
+		value				(string)	Current field value
+	events
+	commands
+				
+Textbox : FormElement
+	skin
+		Textbox
+	state
+		readonly
+	events
+		onchange
+	commands
+		
+ComboBox : FormElement
+	skin
+		Textbox, ComboButton
+	state
+		**All in Button**
+		selectedIndex	(int)
+		options			(vector of Option)
+	events
+		onselect, onchange
+	commands
+		select
+	
+ListBox : FormElement
+	skin
+		Button, ComboButton
+	state
+		**All in Textbox**
+		selectedIndex	(int)
+		options			(vector of Option)
+	events
+		onselect
+	commands
+		select
+		
+Checkbox : FormElement
+	skin
+		Checkbox
+	state
+		checked
+	events
+		onclick
+	commands
+	
+Radio : FormElement
+	skin
+		Radio
+	state
+		checked
+	events
+		onclick
+	commands
+
+Slider : FormElement
+	skin
+		SliderTrack, VerticalSlider, HorizontalSlider
+	state
+		valueMax		(float)
+		valueMin		(float)
+		valueIncrement	(float)
+	events
+		onchange
+	commands
